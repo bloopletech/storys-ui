@@ -5,18 +5,91 @@
     %title Storys
     %link{ rel: "stylesheet", type: "text/css", href: "/css/semantic.min.css" }
     %link{ rel: "stylesheet", type: "text/css", href: "/css/application.css" }
-    %script{ src: "/js/jquery.custom.js" }
+    %script{ src: "/js/jquery.min.js" }
+    %script{ src: "/js/underscore-min.js" }
+    %script{ src: "/js/handlebars.min.js" }
     %script{ src: "/js/semantic.min.js" }
+    %script{ src: "/js/framework.js" }
+    %script{ src: "/js/controllers.index.js" }
+    %script{ src: "/js/controllers.show.js" }
     %script{ src: "/js/application.js" }
   %body
-    .ui.sidebar.inverted.vertical.menu
-      <div class="item">
-        <a class="ui logo icon image" href="/">
-          <img src="/images/logo.png">
-        </a>
-        <a href="/"><b>UI Docs</b></a>
+    <div class="container">
+      <div class="row">
+        <div class="span12" id="content-wrapper">
+          <div id="view-index">
+            <div class="navbar-content">
+              <form class="form-search">
+                <input type="text" id="search" class="form-control search-query">
+                <span class="btn-group sort">
+                  <button class="btn" data-sort="publishedOn" type="button">Published On</button>
+                  <button class="btn" data-sort="wordCount" type="button">Pages</button>
+                  <button class="btn" data-sort="title" type="button">Title</button>
+                </span>
+                <span class="btn-group sort-direction">
+                  <button class="btn" data-sort-direction="asc" type="button">
+                    <i class="icon-arrow-down"></i>
+                  </button>
+                  <button class="btn" data-sort-direction="desc" type="button">
+                    <i class="icon-arrow-up"></i>
+                  </button>
+                </span>
+                <button type="button" class="btn" id="clear-search">
+                  <i class="icon-remove"></i> Clear
+                </button>
+              </form>
+            </div>
+
+            <ul id="stories">
+              <div id="stories-template">
+                <li>
+                  <a href="#show/{{story.key}}!1">
+                    <span title="Story title">{{story.title}}</span>
+                    <div class="emblems">
+                      {{#if story.visits}}
+                        <span class="label label-info" title="Visits to story">
+                          <span class="glyphicon glyphicon-star-empty"></span>
+                          {{story.visits}}
+                        </span>&thinsp;
+                      {{/if}}
+                      <span class="label label-info" title="Page count of story">
+                        <span class="glyphicon glyphicon-file"></span>
+                        {{story.pages}}
+                      </span>
+                    </div>
+                  </a>
+                </li>
+              </div>
+            </ul>
+            <div class="clear"></div>
+          </div>
+
+          <div id="view-show">
+            <div class="navbar-content">
+              <div id="chapters-list-target">
+              </div>
+              <button type="button" class="btn navbar-btn" id="page-home">
+                <i class="icon-eject"></i>
+              </button>
+
+            </div>
+
+            <div id="story"></div>
+          </div>
+        </div>
       </div>
-      %div
-        Storys
-    .pusher
-      test2
+    </div>
+    <div class="container" id="nav-container">
+      <div class="row">
+        <div class="span3" id="nav-column">
+          <nav id="nav" role="navigation">
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div id="navbar-content-target">
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>

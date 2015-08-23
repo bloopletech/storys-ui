@@ -13,7 +13,8 @@ var vendoredPaths = [
   'node_modules/jquery/dist/jquery.min.js',
   'node_modules/underscore/underscore-min.js',
   'node_modules/semantic-ui/dist/semantic.min.js',
-  'node_modules/semantic-ui/dist/semantic.min.css'
+  'node_modules/semantic-ui/dist/semantic.min.css',
+  'node_modules/handlebars/dist/handlebars.min.js'
 ];
 
 gulp.task('haml', function() {
