@@ -1,0 +1,19 @@
+{
+  "name": "storys-ui",
+  "version": "1.0.0",
+  "homepage": "https://github.com/bloopletech/storys-ui",
+  "authors": [
+    "Brenton \"B-Train\" Fletcher <i@bloople.net>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "semantic": "semantic-ui#~2.0.8"
+  }
+}
