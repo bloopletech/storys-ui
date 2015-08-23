@@ -1,25 +1,44 @@
-// gulpfile.js
-// Require the needed packages
 var gulp = require('gulp');
 var haml = require('gulp-haml');
 var sass = require('gulp-sass');
+var jquery = require('gulp-jquery');
+//var uglify = require('gulp-uglify');
+//var concat = require('gulp-concat');
+//var rename = require('gulp-rename');
 
 var paths = {
   haml: ['app/**/*.haml'],
-  sass: ['app/**/*.scss']
+  sass: ['app/**/*.scss'],
+  js: ['app/**/*.js']
 };
 
 gulp.task('haml', function() {
-  gulp.src(paths.haml).pipe(haml()).pipe(gulp.dest('./dist'));
+  gulp.src(paths.haml).pipe(haml()).pipe(gulp.dest('./public'));
 });
 
-gulp.task('sass', function () {
-  gulp.src(paths.sass).pipe(sass().on('error', sass.logError)).pipe(gulp.dest('./dist'));
+gulp.task('sass', function() {
+  gulp.src(paths.sass).pipe(sass().on('error', sass.logError)).pipe(gulp.dest('./public'));
+});
+
+gulp.task('js', function() {
+  gulp.src(paths.js).pipe(gulp.dest('./public'));
+});
+
+gulp.task('jquery', function () {
+  jquery.src({
+    release: 2
+  }).pipe(gulp.dest('./public/js'));
+});
+
+gulp.task('copy-semantic', function() {
+  gulp.src('semantic/dist/semantic.min.css').pipe(gulp.dest('./public/css'));
+  gulp.src('semantic/dist/semantic.min.js').pipe(gulp.dest('./public/js'));
 });
 
 gulp.task('watch', function() {
   gulp.watch(paths.haml, ['haml']);
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.js, ['js']);
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'haml', 'sass', 'js', 'jquery', 'copy-semantic']);
